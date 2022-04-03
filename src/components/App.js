@@ -1,20 +1,55 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import SearchBar from "./SearchBar";
-import useRepo from "../hooks/useRepo";
+import useFetch from "../hooks/useFetch";
 import Table from "./Table";
 
 const App = () => {
-  const [selectedRepo, setSelectedRepo] = useState(null);
-  const [fetchedRepo, fetchGithubRepoByKeyword] = useRepo("tetris");
+  const initialQuery = "tonik";
+  const [query, setQuery] = useState(initialQuery);
 
-  useEffect(() => {
-    setSelectedRepo(fetchedRepo[0]);
-  }, [fetchedRepo]);
+  const url =
+    query &&
+    `https://api.github.com/search/repositories?q=${query}&sort=stars&order=desc`;
+
+  const { status, data, error } = useFetch(url);
+
+  const onFormSubmit = (term) => {
+    if (term) {
+      setQuery(term);
+    }
+  };
+
+  const fetchedRepo = data.items;
 
   return (
     <div className="ui container">
-      <SearchBar onFormSubmit={fetchGithubRepoByKeyword} />
-      <Table selectedRepo={selectedRepo} />
+      <SearchBar onFormSubmit={onFormSubmit} initialQuery={initialQuery} />
+      <div className="ui segment">
+        {status === "idle" && (
+          <h4 className="ui header">
+            {" "}
+            Let's get started by searching for a repository!{" "}
+          </h4>
+        )}
+        {status === "error" && <h4 className="ui header">{error}</h4>}
+        {status === "fetching" && (
+          <>
+            <div className="ui basic segment">
+              <p></p>
+              <div className="ui active inverted dimmer">
+                <div className="ui text loader">Loading</div>
+              </div>
+            </div>
+          </>
+        )}
+        {status === "fetched" && (
+          <>
+            <h4 className="ui header"> Search results for {query} </h4>
+            {fetchedRepo.length === 0 && <div> No repositories found :( </div>}
+            <Table fetchedRepo={fetchedRepo[0]} />
+          </>
+        )}
+      </div>
     </div>
   );
 };

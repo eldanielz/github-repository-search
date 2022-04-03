@@ -1,16 +1,7 @@
 import React from "react";
 
-const Table = ({ selectedRepo }) => {
-  if (!selectedRepo) {
-    return (
-      <div className="ui basic segment">
-        <p></p>
-        <div className="ui active inverted dimmer">
-          <div className="ui text loader">Loading</div>
-        </div>
-      </div>
-    );
-  }
+const Table = ({ fetchedRepo }) => {
+  if (!fetchedRepo) return;
 
   return (
     <div>
@@ -25,10 +16,10 @@ const Table = ({ selectedRepo }) => {
         </thead>
         <tbody>
           <tr>
-            <td>{selectedRepo.full_name}</td>
-            <td>{selectedRepo.owner.login}</td>
-            <td>{selectedRepo.stargazers_count}</td>
-            <td>{selectedRepo.created_at}</td>
+            <td>{fetchedRepo.full_name}</td>
+            <td>{fetchedRepo.owner.login}</td>
+            <td>{fetchedRepo.stargazers_count}</td>
+            <td>{fetchedRepo.created_at}</td>
           </tr>
         </tbody>
       </table>

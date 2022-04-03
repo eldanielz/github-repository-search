@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
-const SearchBar = ({ onFormSubmit }) => {
-  const [term, setTerm] = useState("tetris");
+const SearchBar = ({ onFormSubmit, initialQuery }) => {
+  const [term, setTerm] = useState(initialQuery);
 
   const onSubmit = (event) => {
     event.preventDefault();
