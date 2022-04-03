@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import SearchBar from "./SearchBar";
+import useRepo from "../hooks/useRepo";
 
 const App = () => {
+  const [selectedRepo, setSelectedRepo] = useState(null);
+  const [repo, search] = useRepo("tetris");
+
+  useEffect(() => {
+    setSelectedRepo(repo[0]);
+  }, [repo]);
+
   return (
     <div className="ui container">
-      <SearchBar />
+      <SearchBar onFormSubmit={search} />
     </div>
   );
 };
