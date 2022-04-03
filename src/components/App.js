@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import SearchBar from "./SearchBar";
 import useRepo from "../hooks/useRepo";
+import Table from "./Table";
 
 const App = () => {
   const [selectedRepo, setSelectedRepo] = useState(null);
@@ -13,6 +14,7 @@ const App = () => {
   return (
     <div className="ui container">
       <SearchBar onFormSubmit={search} />
+      <Table selectedRepo={selectedRepo} />
     </div>
   );
 };
