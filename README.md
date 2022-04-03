@@ -2,7 +2,7 @@
 
 ## About the project
 
-Find any repository within GitHub using a brand-new search application
+Find any repository within GitHub using a brand-new search application!
 
 ## Quick start
 
