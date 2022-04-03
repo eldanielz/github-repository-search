@@ -19,7 +19,7 @@ const App = () => {
     }
   };
 
-  const fetchedRepo = data.items;
+  const repos = data.items;
 
   return (
     <div className="ui container">
@@ -45,8 +45,11 @@ const App = () => {
         {status === "fetched" && (
           <>
             <h4 className="ui header"> Search results for {query} </h4>
-            {fetchedRepo.length === 0 && <div> No repositories found :( </div>}
-            <Table fetchedRepo={fetchedRepo[0]} />
+            {repos.length === 0 ? (
+              <div> No repositories found :( </div>
+            ) : (
+              <Table repos={repos} />
+            )}
           </>
         )}
       </div>

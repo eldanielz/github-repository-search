@@ -1,7 +1,12 @@
 import React from "react";
+import TableRow from "./TableRow";
 
-const Table = ({ fetchedRepo }) => {
-  if (!fetchedRepo) return;
+const Table = ({ repos }) => {
+  if (!repos) return;
+
+  const renderedRepos = repos.map((repo) => {
+    return <TableRow repo={repo} />;
+  });
 
   return (
     <div>
@@ -14,14 +19,7 @@ const Table = ({ fetchedRepo }) => {
             <th>Created at</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td>{fetchedRepo.full_name}</td>
-            <td>{fetchedRepo.owner.login}</td>
-            <td>{fetchedRepo.stargazers_count}</td>
-            <td>{fetchedRepo.created_at}</td>
-          </tr>
-        </tbody>
+        {renderedRepos}
       </table>
     </div>
   );

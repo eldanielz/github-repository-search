@@ -14,7 +14,7 @@ Styles are provided by Semantic UI framework.
 
 ## UI Demo
 
-![](https://github.com/eldanielz/github-repository-search/blob/main/docs/github-repository-search-demo.png)
+![](https://github.com/eldanielz/github-repository-search/blob/main/docs/github-repository-search-demo-v2.png)
 
 ## Quick start
 
