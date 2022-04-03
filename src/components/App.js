@@ -5,15 +5,15 @@ import Table from "./Table";
 
 const App = () => {
   const [selectedRepo, setSelectedRepo] = useState(null);
-  const [repo, search] = useRepo("tetris");
+  const [fetchedRepo, fetchGithubRepoByKeyword] = useRepo("tetris");
 
   useEffect(() => {
-    setSelectedRepo(repo[0]);
-  }, [repo]);
+    setSelectedRepo(fetchedRepo[0]);
+  }, [fetchedRepo]);
 
   return (
     <div className="ui container">
-      <SearchBar onFormSubmit={search} />
+      <SearchBar onFormSubmit={fetchGithubRepoByKeyword} />
       <Table selectedRepo={selectedRepo} />
     </div>
   );

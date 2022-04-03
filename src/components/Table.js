@@ -2,7 +2,14 @@ import React from "react";
 
 const Table = ({ selectedRepo }) => {
   if (!selectedRepo) {
-    return <div>Loading...</div>;
+    return (
+      <div className="ui basic segment">
+        <p></p>
+        <div className="ui active inverted dimmer">
+          <div className="ui text loader">Loading</div>
+        </div>
+      </div>
+    );
   }
 
   return (

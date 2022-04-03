@@ -1,23 +1,23 @@
 import { useState, useEffect } from "react";
-import github from "../apis/github";
+import axios from "../apis/axios-instance";
 
 const useRepo = (defaultSearchTerm) => {
-  const [repo, setRepo] = useState([]);
+  const [fetchedRepo, setFetchedRepo] = useState([]);
 
   useEffect(() => {
-    search(defaultSearchTerm);
+    fetchGithubRepoByKeyword(defaultSearchTerm);
   }, [defaultSearchTerm]);
 
-  const search = async (term) => {
-    const response = await github.get("/search/repositories", {
+  const fetchGithubRepoByKeyword = async (term) => {
+    const response = await axios.get("/search/repositories", {
       params: {
         q: term,
       },
     });
-    setRepo(response.data.items);
+    setFetchedRepo(response.data.items);
   };
 
-  return [repo, search];
+  return [fetchedRepo, fetchGithubRepoByKeyword];
 };
 
 export default useRepo;
