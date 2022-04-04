@@ -39,6 +39,10 @@ const useFetch = (url) => {
           cache.current[url] = data;
 
           if (cancelRequest) return;
+          if ("errors" in data) {
+            dispatch({ type: "FETCH_ERROR", payload: data.errors[0].message });
+            return;
+          }
           dispatch({ type: "FETCHED", payload: data });
         } catch (error) {
           if (cancelRequest) return;
