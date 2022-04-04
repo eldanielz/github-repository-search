@@ -4,9 +4,8 @@
 
 Find any repository within GitHub using a brand-new search application!
 
-Functionalities to be added:
+Features to be added:
 
-- table sorting
 - support for Redux
 - fetching data from API when user stops typing (useEffect hook + setTimeout)
 
